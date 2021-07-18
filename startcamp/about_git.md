@@ -177,4 +177,93 @@ iv) 깃허브 등 저장소에 올림: push
 
   - TIP) 경로 복사, 붙여넣기: `ctrl + Insert`와 `shift + Insert`
 
-    
+
+
+#### 3. Branch
+
+: 메인 줄기를 유지한 채, 브랜치를 뻗어 변경사항을 시도해볼 수 있다.
+
+: 협업 방법
+
+* 명령어
+
+  * 브랜치 생성: `git branch 브랜치명`
+  * 브랜치 목록 보기: `git branch`
+  * 브랜치 이동: `git checkout 브랜치명`
+  * 브랜치 생성 + 이동: `git checkout -b 브랜치명`
+  * 브랜치 병합: (master 브랜치에서) `git merge 브랜치명`
+  * 브랜치 삭제: `git branch -d 브랜치명`
+
+* Merge의 3가지 시나리오
+
+  1) Fast-forward: 한 브랜치에서만 작업이 이루어지고, 다른 한 쪽에서는 작업이 이루어지지 않음.
+
+  -> 문제 없이 최신의 것으로 같게 합쳐짐 (일명 "무임승차")
+
+  2) Merge: 서로 다른 영역에서 나누어 작업이 이루어졌을 때
+
+  -> 양쪽 모두 최신이므로 원활하게 합쳐짐 (마스터에서 다른 브랜치의 것을 들고오게 됨)
+
+  3) Conflict: 작업영역이 겹쳐져 git에서 어떤 버전이 최신인지 판단하지 못함
+
+  -> 수동으로 최신의 것을 지정해주어야 함.
+
+
+
+#### 4. 협업 방식
+
+- [x] Shared repository model: 공동주인으로서 협업 (owner(s) + collaborators)
+- [ ] Fork & Pull model: 주인은 모든 권한을 갖지만, 다른 contributors는 전권을 가지지 못함.
+
+
+
+#### 5. Git reset
+
+: 원하는 시점으로 이동하기
+
+: 특정 커밋으로 되돌아가며, 해당 커밋 이후의 커밋들은 모두 사라진다. 파일 상태는 옵션(3가지)을 통해 결정.
+
+1. --soft: 
+
+   - 돌아가려는 커밋으로 되돌아가고,
+
+   - 이후의 커밋은 **staging area**로 돌려놓는다 (commit 직전 상태)
+
+     (이미 staging area에 올라 있으므로, 수정은 불가.)
+
+     ![image-20210719002152000](about_git.assets/image-20210719002152000-1626621715036.png)
+
+2. --mixed
+
+   - 디폴트값
+
+   - 돌아가려는 커밋으로 되돌아가고,
+
+   - 이후의 커밋은 **working directory**로 돌려놓는다 (add 전 상태)
+
+     수정을 하여 staging area 로 add 시킬 수 있다.
+
+   - 가장 빈번하게 사용되는 옵션
+
+     ![image-20210719002216028](about_git.assets/image-20210719002216028-1626621737892.png)
+
+3. --hard
+
+   - 돌아가려는 커밋으로 되돌아가고,
+   - 이후의 커밋된 파일들(tracked files)은 모두 working directory에서 삭제된다.
+   - ![image-20210719002238988](about_git.assets/image-20210719002238988-1626621761073.png)
+
+* 참고:
+
+  공유하는 브랜치에서 이전 커밋을 수정하고 싶을 때에는 `git revert`를 사용한다.
+
+  **Git revert**
+
+  : "특정 사건을 없었던 일로 만드는 행위"
+
+  : 이전 커밋 내역을 그대로 남겨둔 채 새로운 커밋을 생성. 커밋 히스토리 변경 없이 해당 커밋 내용만을 삭제한 상태의 새로운 커밋을 생성.
+
+  : `git reset`을 쓰면 커밋이 과거로 돌아가기 때문에 remote repository에 push가 되지 않음 (최신이 아니므로). 그래서 git revert를 사용해야 함.
+
+  ![img](about_git.assets/git-revert-vs-reset.svg)
+
