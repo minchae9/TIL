@@ -191,6 +191,8 @@ finally:
 - LBYL(look before you leap) 스타일
 
   즉, 검사부터 하고, 실행.
+  
+- 더 빠르다.
 
 ### 코드의 차이
 
