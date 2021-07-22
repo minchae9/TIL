@@ -132,6 +132,40 @@ finally:
       print(f'{err}, 오류가 발생했습니다.')	# 에러 메시지가 err에 들어가 출력됨
   ```
 
+✔ `finally`를 사용하는 이유
+
+try문이나 except절에서 `return`을 만나면, 함수가 종료된다.
+
+이때, `finally`를 쓰면 return으로 종료되기 전에 "무조건" 실행시킬 수 있다.
+
+무조건 실행된다는 것은, try 구문에 속하는 finally가 모두 끝난 다음에야 return으로 함수 전체가 종료된다는 것이다.
+
+예)
+
+```python
+def first(a):
+    try:
+        result = int(a)
+        return result
+    except:
+        return False
+    finally:
+        print(a)
+
+print(first('3.5'))			  # '3.5'
+							# False
+        
+def second(a):
+    try:
+        result = int(a)
+        return result
+    except:
+        return False
+    print(a)
+       
+print(first('3.5'))			  # False
+```
+
 # 4. 예외 발생시키기
 
 * raise 문
