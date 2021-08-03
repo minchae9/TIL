@@ -160,6 +160,8 @@ WHATWG은 애플, 구글, 마이크로소프트, 모질라 기업이 참가하�
 
 → 시각 장애인의 웹 사용을 도와주는 도구인 스크린 리더의 경우, 시맨틱 태그를 인식하여 말하기의 변화를 줄 수 있다고 한다. 내용 전달에 시맨틱 태그가 더욱 유용하다.
 
+→ SEO(Search engine optimization)
+
 ​	▸ [''웹 접근성''이란?](http://www.wa.or.kr/m1/sub1.asp)  💬 (예: [네이버 널리](https://nuli.navercorp.com/))
 
 - `div`: 구조를 잡아주는 용도의 태그 (블럭 요소)
@@ -275,3 +277,18 @@ WHATWG은 애플, 구글, 마이크로소프트, 모질라 기업이 참가하�
   - `<label>`: for 속성과 일치하는 id 값의 요소에서, 라벨만 눌러도 선택되게 해줌
   - `<select>` 태그 + 아래에 각각의 `<option>` 태그: 드랍다운
 
+---
+
+### VS Code 단축키
+
+- Alt + 클릭: 커서 여러 개
+- ! + Tab: 자동완성(emmit)
+- Alt + 방향키: 위아래 줄 이동 가능
+- Alt + Shift + 방향키: 복사
+- Ctrl + D: 같은 단어를 찾음 (D 연속해서 눌러서 여러 개 고를 수 있음) - 한 번에 수정하기
+
+### 참고 사이트
+
+- html-css-js.com
+- web.dev/learn/css
+- bootstrap

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>FORM</h1>
+        </div>
+    </header>
+    <section>
+        <div>
+            <h4>주문서를 작성하여 주십시오</h4>
+        </div>
+        <div>
+            <label for="name">이름:</label>
+            <input type="text" id="name" placeholder="이름을 입력해주세요"><br>
+            <label for="date">날짜:</label>
+            <input type="date" id="date">
+        </div>
+        <div>
+            <h2>1. 샌드위치 선택</h2>
+            <input type="radio" name="sandwich" id="sandwich1">
+            <label for="sandwich1">에그마요</label><br>
+            <input type="radio" name="sandwich" id="sandwich2">
+            <label for="sandwich2">이탈리안 비엠티</label><br>
+            <input type="radio" name="sandwich" id="sandwich3">
+            <label for="sandwich3">터키 베이컨 아보카도</label><br>
+            <hr>
+        </div>
+        <div>
+            <h2>2. 사이즈 선택</h2>
+            <input type="text" size="1">
+            <hr>
+        </div>
+        <div>
+            <h2>3. 빵</h2>
+            <select name="breads" id="bread-select">
+                <option value="허니오트" autofocus>허니오트</option>
+                <option value="플랫브레드">플랫브레드</option>
+                <option value="위트">위트</option>
+            </select>
+            <h2>4. 야채/소스</h2>
+            <input type="checkbox" name="토마토" id="tomato">
+            <label for="tomato">토마토</label><br>
+            <input type="checkbox" name="오이" id="cucumber">
+            <label for="cucumber">오이</label><br>
+            <input type="checkbox" name="할라피뇨" id="jalapeno">
+            <label for="jalapeno">할라피뇨</label><br>
+            <input type="checkbox" name="핫 칠리" id="hotchili">
+            <label for="hotchili">핫 칠리</label><br>
+            <input type="checkbox" name="바베큐" id="bbq">
+            <label for="bbq">바베큐</label><br>
+            <input type="button" value="submit">
+        </div>
+    </section>
+</body>
+</html>
