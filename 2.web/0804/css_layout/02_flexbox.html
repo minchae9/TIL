@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <link rel="stylesheet" href="02_flexbox.css">
+  <title>Document</title>
+  <style>
+    
+    .flex-container {
+      /* 1. 정렬하고자 하는 부모 요소(flex container)에 선언 */
+      display: flex;
+      /* display: inline-flex; */
+      /* 하늘색 박스(container)의 차이 */
+
+      /* 2. 메인축 방향 설정 */
+      flex-direction: row;
+      /* flex-direction: row-reverse; */
+      /* flex-direction: column; */
+      /* flex-direction: column-reverse; */
+      
+      /* 3. 바깥으로 튀어나가지 않게 감싸줌 (기본: nowrap) */
+      /* 강제로 한줄로 배치 여부 결정 */
+      /* flex-wrap: nowrap; */
+      /* flex-wrap: wrap; */
+      /* flex-wrap: wrap-reverse; 윗줄로 감 */
+
+      /* 4. flex-direction과 flex-wrap의 shorthand */
+      /* flex-flow: column wrap; */
+
+      /* 5. 메인축 정렬 */
+      justify-content: flex-start; /* 기본값 */
+      /* justify-content: center; */
+      /* justify-content: flex-end; */
+      /* justify-content: space-between; */
+      /* justify-content: space-around; 내부 요소의 여백이 외부 여백의 2배 */
+      /* justify-content: space-evenly; */
+
+      /* 6. 교차축 정렬 */
+      align-items: stretch; /* 기본값: 교차축 크기만큼 늘어남 */
+      /* align-items: flex-start; */
+      /* align-items: center; */
+      /* align-items: flex-end; */
+      /* align-items: baseline; 글씨 줄 맞춤 - 컨텐츠 크기 다를 때 */
+    }
+
+    /* 7. 교차축 개별 정렬 */
+    .item1 {
+      /* align-self: flex-start; */
+      /* order 값이 작을수록 앞으로 정렬 (기본값 0) */
+      order: 0;
+      /* flex-grow: 메인축에서 남은 공간을 각 항목에 분배 */
+      /* 비율이 1:2:3이 아니라, 남은 공간에 대한 배분 */
+      /* 기본값 0 */
+      flex-grow: 1;
+    }  
+
+    .item2 {
+      /* align-self: center; */
+      /* order: -1; */
+      flex-grow: 2;
+    }
+    
+    .item3 {
+      /* align-self: flex-end; */
+      /* order: 1; */
+      flex-grow: 3;
+    }
+  </style>
+</head>
+<body>
+  <div class="base">
+    <h2>Flex</h2>
+    <hr>
+    <div class="box flex-container">
+      <div class="item1">1</div>
+      <div class="item2">2</div>
+      <div class="item3">3</div>
+      <!-- <div class="item4">4</div>
+      <div class="item5">5</div>
+      <div class="item6">6</div>
+      <div class="item7">7</div>
+      <div class="item8">8</div>
+      <div class="item9">9</div>
+      <div class="item10">10</div>
+      <div class="item11">11</div>
+      <div class="item12">12</div>
+      <div class="item13">13</div>
+      <div class="item13">14</div> -->
+    </div>
+  </div>
+</body>
+
+</html>
