@@ -50,7 +50,6 @@
     (h + 1)개
     $$
     
-
   - 최대 노드 개수: 
     $$
     (2^{h+1} - 1) 개
@@ -162,6 +161,67 @@ def postorder(n):
         postorder(right[n])	# 2) 오른쪽 정점 방문, 처리
         visit(n)		   # 3) 현재 정점 처리
 ```
+
+#### <코드로 정리>
+
+```python
+"""
+6
+1 2 1 3 2 4 3 5 3 6
+"""
+
+def pre_order(n):
+    if n:   # 유효한 정점이면
+        print(n)    		# 1) 해당 정점 처리
+        pre_order(left[n])   # 2) n의 왼쪽 자식으로 이동
+        pre_order(right[n])  # 3) n의 오른쪽 자식으로 이동
+
+def in_order(n):
+    if n:
+        in_order(left[n])
+        print(n)
+        in_order(right[n])
+
+def post_order(n):
+    if n:
+        post_order(left[n])
+        post_order(right[n])
+        print(n)
+
+
+V = int(input())
+edge = list(map(int, input().split()))
+E = V - 1  			    # V개의 정점이 있는 트리의 간선 수
+left = [0] * (V+1)  	# 부모를 인덱스로 자식 번호 저장
+right = [0] * (V+1)
+par = [0]*(V+1)     	# 자식을 인덱스로 부모 번호 저장
+for i in range(E):
+    p, c = edge[i*2], edge[i*2+1]
+    if left[p] == 0:    # p의 왼쪽 자식이 없으면
+        left[p] = c
+    else:               # 왼쪽 자식이 있으면, 오른쪽 자식으로 저장
+        right[p] = c
+    par[c] = p          # 자식을 인덱스로 부모를 저장
+                        # (1) 조상찾기에 사용
+                        # (2) root 찾기
+                        # ㄴ 포화이진트리의 정점번호 규칙을 따르지 않는 이진트리에 사용하면 됨
+
+pre_order(1)
+# print 대신 cnt 하면, 1을 루트로 하는 서브트리의 정점 개수를 셀 수 있다.
+
+# 조상노드 찾기
+while par[c]:   # 부모가 있으면
+    print(par[c])
+    c = par[c]
+    
+# 루트 노드 찾기: 루트는 par 값이 0 (부모가 없으므로)
+root = 1
+while par[root]:    # root로 추정한 정점이 부모가 있으면
+    root += 1       # 다음 정점을 확인해보자
+print(root)
+```
+
+
 
 <br/>
 
