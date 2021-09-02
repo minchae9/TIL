@@ -111,9 +111,9 @@
 
   * 함수 include()를 만나면, url의 일치하는 부분을 잘라내고, 남은 부분을 후속 처리를 위해 include 된 URLconf로 전달한다.
 
-  <img src="Django (1)-2.assets/image-20210901200704396-16304944260471.png" alt="image-20210901200704396" style="zoom:80%;" />
+  <img src="django01-2.assets/image-20210901200704396.png" alt="image-20210901200704396" style="zoom:80%;" />
 
-  <img src="Django (1)-2.assets/image-20210901200746199.png" alt="image-20210901200746199" style="zoom:80%;" />
+  <img src="django01-2.assets/image-20210901200746199.png" alt="image-20210901200746199" style="zoom:80%;" />
 
 - views.py
 
@@ -125,7 +125,7 @@
 
   (3) 다른 url로 이동시키기 위해서는 redirect()를 사용할 수 있다.
 
-  <img src="Django (1)-2.assets/image-20210901201446094.png" alt="image-20210901201446094" style="zoom:80%;" />
+  <img src="django01-2.assets/image-20210901201446094.png" alt="image-20210901201446094" style="zoom:80%;" />
 
 - templates
 
@@ -145,19 +145,19 @@
 
   내부에 `block 태그`를 만들어 변경될 부분을 지정할 수 있다.
 
-  <img src="Django (1)-2.assets/image-20210901202512399.png" alt="image-20210901202512399" style="zoom:80%;" />
+  <img src="django01-2.assets/image-20210901202512399.png" alt="image-20210901202512399" style="zoom:80%;" />
 
   (2) dir
 
   `settings.py`의 `TEMPLATES`의 'DIRS'가 새로운 templates 폴더를 가리킬 수 있도록 바꿔준다.
 
-  <img src="Django (1)-2.assets/image-20210901203131812.png" alt="image-20210901203131812" style="zoom:80%;" />
+  <img src="django01-2.assets/image-20210901203131812.png" alt="image-20210901203131812" style="zoom:80%;" />
 
   (3) templates
 
   `block 태그` 안에 내용을 작성하면 된다.
 
-  <img src="Django (1)-2.assets/image-20210901202613553.png" alt="image-20210901202613553" style="zoom:80%;" />
+  <img src="django01-2.assets/image-20210901202613553.png" alt="image-20210901202613553" style="zoom:80%;" />
 
 <br/>
 
@@ -247,7 +247,7 @@
 
   * 아래와 같이, 데이터가 딕셔너리 형태로 제공되므로, `메서드명.get('key')`로 접근한다.
 
-  <img src="Django (1)-2.assets/image-20210901205556355.png" alt="image-20210901205556355" style="zoom: 67%;" />
+  <img src="django01-2.assets/image-20210901205556355.png" alt="image-20210901205556355" style="zoom:80%;" />
 
   <br/>
 
@@ -308,6 +308,6 @@ def hello(request, name):
 
 👉 url template tag에 그냥 name 속성만 적는 것이 아니라, `app_name:name` 형식으로 적어주면 정확하게 이름공간을 구분하여 경로를 지정해줄 수 있다.
 
-<img src="Django (1)-2.assets/image-20210901200746199.png" alt="image-20210901200746199" style="zoom:80%;" />
+<img src="django01-2.assets/image-20210901200746199.png" alt="image-20210901200746199" style="zoom:80%;" />
 
 *끝*
