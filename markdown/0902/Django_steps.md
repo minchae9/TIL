@@ -290,7 +290,7 @@ def update(request, pk):
       return render(request, 'articles/index.html', context)
   ```
 
-  <img src="단계 작성한 거.assets/캡처.PNG" alt="캡처" style="zoom: 80%;" />
+  <img src="Django_steps.assets/캡처.PNG" alt="캡처" style="zoom:80%;" />
 
   (1) `urls.py`에서 `path('', views.index, name='index')`를 통해 온 경로는 위 함수를 거치게 된다.
 
@@ -334,7 +334,7 @@ def update(request, pk):
 
 위에서 언급한 바와 같이, 하위 폴더를 추가해서 템플릿 파일을 저장한다.
 
-<img src="단계 작성한 거.assets/image-20210902171838692.png" alt="image-20210902171838692" style="zoom:80%;" />
+<img src="Django_steps.assets/image-20210902171838692.png" alt="image-20210902171838692" style="zoom:80%;" />
 
 - 기본 양식
 
