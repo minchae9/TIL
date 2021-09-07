@@ -58,7 +58,7 @@ def create(request):
     return render(request, 'articles/create.html', context)
 ```
 
-### 공부하며 생겼던 의문점 해결하기 & 주의할 점 알아보기!
+## 공부하며 생겼던 의문점 해결하기 & 주의할 점 알아보기!
 
 - ModelForm의 Meta 클래스의 `fields` 변수 등에 튜플로 속성값을 작성할 때, 튜플의 원소가 하나이면 `,`를 빠뜨리지 않도록 주의해야 한다.
 
