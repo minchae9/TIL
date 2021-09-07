@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="fw-bold">CRUD with ModelForm</h1>
+  <hr>
+  <h2 class="fw-bold">Detail</h2>
+  <hr>
+  <h3 class="fw-bold">글 번호: {{ article.pk }}</h3>
+  <h3 class="fw-bold">글 제목: {{ article.title }}</h3>
+  <p>글 내용: {{ article.content }}</p>
+  <p>글 생성시각: {{ article.created_at|date:"Y년 M j일 g:i a"}}</p>
+  <p>글 수정시각: {{ article.updated_at|date:"Y년 M j일 g:i a"}}</p>
+  <a href="{% url 'articles:update' article.pk %}" class="text-decoration-none" >EDIT</a>
+  <form action="{% url 'articles:delete' article.pk %}" method="POST" id="form">
+    {% csrf_token %}
+    <button class="btn btn-link text-decoration-none px-0">DELETE</button>
+  </form>
+  </a>
+  <hr>
+  <a href="{% url 'articles:index' %}" class="text-decoration-none">BACK</a>
+{% endblock content %}
