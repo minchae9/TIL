@@ -416,19 +416,76 @@ class ArticleForm(forms.ModelForm):
 
 ## 3. Rendering fields manually
 
-(미완)
+### 수동으로 Form 작성하기
 
-form은 errors, label, 그리고 input으로 구성되어 있다.
+#### 1. Rendering fields manually
 
-각각의 구성요소에 `.`을 통해 접근할 수 있다.
+form은 `errors`, `label_tag`, 그리고 input 요소들(모델 클래스 변수)로 구성되어 있다. 우리는 각각의 구성요소에 `.`을 통해 접근할 수 있다.
 
-errors에는 `<ul> 태그` 안에 `<li> 태그`로 하나씩 들어있다.
+```django
+<form action="" method="POST">
+    {% csrf_token %}
+    <div>
+        {{ form.title.errors }}
+        {{ form.title.label_tag}}
+    </div>
+</form>
+```
 
-form의 구성 순서를 바꾸고 싶으면, 혹은 각각에 bootstrap을 적용하고 싶다면,  `.`으로 각각에 접근해서 따로 처리할 수 있다.
+- errors에는 `<ul> 태그` 안에 `<li> 태그`로 하나씩 들어있다.
 
-bootstrap 사용방법: (i) CDN, (ii) 라이브러리
+- form의 구성 순서를 바꾸고 싶으면, 혹은 각각에 bootstrap을 적용하고 싶다면,  `.`으로 각각에 접근해서 따로 처리할 수 있다.
 
+#### 2. Looping over the form's fields (`{% for %}`)
 
+<br/>
+
+### Bootstrap과 함께 사용하기
+
+> [방법 1] Bootstrap Form class
+>
+> [방법 2] 라이브러리
+
+#### [방법 1] Bootstrap Form class
+
+1. django bootstrap 설치
+
+   ```bash
+   $ pip install django-bootstrap-v5
+   ```
+
+2. `settings.py`의 'INSTALLED_APPS' 에 'bootstrap5' 추가하기
+
+3. 템플릿 내에 (base.html)
+
+   ```django
+   {# Load the tag library - html boilerplate 상단 #}
+   {% load bootstrap5 %}
+   
+   {# Load CSS and JavaScript #}
+   {% bootstrap_css %}
+   {% bootstrap_javascript %}
+   ```
+
+   을 로드하여 bootstrap CSS와 Js 를 사용할 수 있게끔 한다.
+
+   <img src="django03.assets/create_bootstrap.PNG" alt="create_bootstrap" style="zoom:67%;" />
+
+4. form이 들어가는 템플릿 내에 라이브러리를 로드하고, form 자리에 아래 태그를 작성하여 bootstrap에서 제공하는 form 형태를 사용할 수 있다:
+
+   ```django
+   {# Load the tag library #}
+   {% load bootstrap5 %}
+   
+   {# form 태그 안에 #}
+   {% bootstrap_form form %}
+   ```
+
+   <img src="django03.assets/django-bootstrap.PNG" alt="django-bootstrap" style="zoom:61%;" />
+   
+5. 결과 (예시)
+
+   <img src="django03.assets/bootstrap_result.PNG" alt="bootstrap_result" style="zoom:61%;" />
 
 👉 *참고자료: [Django Rendering Fields Manually](https://docs.djangoproject.com/en/3.2/topics/forms/)*
 
