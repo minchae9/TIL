@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">  <!--link:css로 만듦-->
+{% endblock css %}
+
+{% block content %}
+  <h1>articles index</h1>
+  <a href="{% url 'articles:create' %}">[NEW]</a>
+  {% for article in articles %}
+    <h2>{{ article.title }}</h2>
+    <a href="{% url 'articles:detail' article.pk %}">상세보기</a>
+    <hr>
+  {% endfor %}
+  <img src="{% static 'articles/choonsik.jpg' %}" alt="choonsik">
+{% endblock content %}
