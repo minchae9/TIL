@@ -8,7 +8,11 @@
   <p>내용 : {{ article.content }}</p>
   {% if article.image %}
     <img src="{{ article.image.url}}" alt="{{ article.image }}">
-    <p>{{ article.image }}</p>
+    <p>{{ article.image.url }}</p>
+    <hr>
+    <img src="{{ article.image_thumbnail.url}}" alt="{{ article.image_thumbnail }}">
+    <p>{{ article.image_thumbnail.url }}</p>
+    <hr>
   {% endif %}
   <p>작성시각 : {{ article.created_at }}</p>
   <p>수정시각 : {{ article.updated_at }}</p>
