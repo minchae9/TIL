@@ -1,5 +1,4 @@
  ### Hi, there 😊 I'm Dorothy.
- I study computer programming and other super exciting stuff!
  
  ### About Me
  - Blog: [My Velog](https://velog.io/@minchae9)
