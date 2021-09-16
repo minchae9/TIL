@@ -38,6 +38,10 @@ Django의 인증 시스템은 **인증(authentication)**과 **권한(authorizati
 
 💬참고: [OAuth란?](https://d2.naver.com/helloworld/24942)
 
+💬 인증 --- 401 Unauthorized
+
+​		권한 --- 403 Forbidden
+
 <br/>
 
 ### 2. 쿠키🍪와 세션
@@ -83,8 +87,13 @@ Django의 인증 시스템은 **인증(authentication)**과 **권한(authorizati
   > 서버가 사용자의 브라우저에 전송하는 작은 데이터 조각으로, 사용자가 요청을 보낼 때 사용자의 컴퓨터에 저장된다.
 
   - KEY - VALUE 형식으로 저장된다.
+
   - 브라우저는 서버로부터 받은 쿠키를 로컬에 저장해 두었다가, <u>동일한 서버에 재요청을 할 때, 저장된 쿠키를 요청과 함께 전송한다.</u>
-  - [참고] 쿠키로 사용자의 행동을 추적하거나, 쿠키를 훔쳐 사용자의 계정 접근권한을 획득하는 등의 방식으로 악용될 수 있다.
+
+  - [참고] 쿠키로 사용자의 행동을 추적하거나, 쿠키를 훔쳐 사용자의 계정 접근권한을 획득하는 등의 방식으로 악용될 수 있다. 
+
+    (→ 민감한 정보를 저장하기 위해서는 세션 개념이 도입)
+
   - HTTP 쿠키는 "상태가 있는 세션을 만들어준다." ★
 
   - 쿠키의 사용 목적:
@@ -218,6 +227,8 @@ http://127.0.0.1:8000/accounts/login/?next=/articles/create/
 >- view 함수에서 사용된다.
 >- 첫 번째 인자로 HttpRequest 객체를 받고, 두 번째 인자로 User 객체를 받는다.
 
+<img src="DjangoAuthentication1.assets/image-20210916161834062.png" alt="image-20210916161834062" style="zoom: 67%;" />
+
 ```django
 <!--base.html의 <body> 부분-->
 <div class="container">
@@ -270,9 +281,19 @@ def login(request):
 
    view 함수의 login 함수와 이름이 겹치기 때문이다 (이름공간(LEGB rule) 관련).
 
-3) `form.get_user()`
+3. `form.get_user()`
 
    `get_user()`는 AuthenticationForm 클래스의 인스턴스 메서드로, (유효성 검사를 통과했을 때) 현재 로그인한 사용자를 객체로 제공해준다. (유효성 검사를 통과하지 못했다면, None)
+
+   ```python
+   def get_user(self, user_id):
+       try:
+           return User.objects.get(pk=user_id)
+       except User.DoesNotExist:
+           return None
+   ```
+
+   
 
 4) `redirect(request.GET.get('next') or 'articles:index')`
 
