@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ review.title }}</h2>
+  <br>
+  <h4>영화 "{{ review.movie_title }}"에 대한 리뷰입니다.</h4>
+  <h4>평점: {{ review.rank }}</h4>
+  <p>{{ review.content }}</p>
+  <a href="{% url 'community:update' review.pk %}">
+    <button type="submit">수정하기</button>
+  </a>
+  <form action="{% url 'community:delete' review.pk %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">삭제하기</button>
+  </form>
+{% endblock content %}
