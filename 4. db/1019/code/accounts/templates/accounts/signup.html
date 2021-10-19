@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Sign up</h2>
+
+<form action="" method="POST">  <!--action 비어있으면 빈 종이 보냈던 url로 보내줌-->
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button>Signup!</button>
+</form>
+
+{% endblock content %}
