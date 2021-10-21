@@ -334,6 +334,7 @@ urlpatterns = [
 ```
 
 - variable routing의 기본값은 str
+- ***<u>마지막에 적어야 한다!</u> 위에 적으면 문자열이 들어가는 모든 경로가 죄다 프로필 경로로 들어가 버리기 때문이다.***
 
 ```python
 # 2. accounts/views.py
@@ -497,7 +498,9 @@ def follow(request, user_pk):
 {% endblock content %}
 ```
 
-<hr/>
+![image-20211021112917631](DB03-Model_Relationship_II.assets/image-20211021112917631.png)
+
+---
 
 ❓ 추가 정보
 
