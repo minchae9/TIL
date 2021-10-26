@@ -37,10 +37,4 @@ def article_json_2(request):
     data = serializers.serialize('json', articles)
     return HttpResponse(data, content_type='application/json')
 
-# DRF 라이브러리를 사용
-# @api_view(['GET'])
-@api_view()
-def article_json_3(request):
-    articles = Article.objects.all()
-    serializer = ArticleSerializer(articles, many=True)
-    return Response(serializer.data)
+
