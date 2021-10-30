@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <a href="{% url 'todo:create' %}">
+    <button type="submit">Add</button>
+  </a>
+  <hr>
+  {% if tasks %}
+    
+    {% for task in tasks %}
+      <div class="card">
+        <div class="card-body">
+          <p class="text-start">{{ task.time }}</p>
+          <ul class="text-start">
+            <li>{{ task.task }}</li>
+          </ul>
+
+          <form action="{% url 'todo:check' task.pk %}" method="POST" class='text-end'>
+            {% csrf_token %}
+            {% if task.done %}
+              <button class="btn btn-link"><i class="fas fa-check-circle fa-lg" style="color:green;"></i></i></button>
+            {% else %}
+              <button class="btn btn-link"><i class="far fa-check-circle fa-lg" style="color:gray;"></i></button>
+            {% endif %}
+          </form>
+
+          <form action="{% url 'todo:edit' task.pk %}" method="POST" class='text-end'>
+            {% csrf_token %}
+            <button type="submit">edit</button>
+          </form>
+          <form action="{% url 'todo:delete' task.pk %}" method="POST" class='text-end'>
+            {% csrf_token %}
+            <button type="submit">delete</button>
+          </form>
+        </div>
+      </div>
+      <br>
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endblock content %}
