@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ person.username }}님의 프로필</h1>
+
+{% with followings=person.followings.all followers=person.followers.all %}
+  <div>
+    <div>
+      팔로잉 : {{ followings|length }} / 팔로워 : <span id="followers-count">{{ followers|length }}</span>
+    </div>
+    {% if request.user != person %}
+      <div>
+        <form id="follow-form" data-profile="{{ person.pk }}">
+          {% csrf_token %}
+          {% if request.user in followers %}
+            <button id="follow-button" class="btn">언팔로우</button>
+          {% else %}
+            <button id="follow-button" class="btn btn-primary">팔로우</button>
+          {% endif %}
+        </form>
+      </div>
+    {% endif %}
+  </div>
+{% endwith %}
+
+
+<hr>
+
+<h2>{{ person.username }}'s 게시글</h2>
+{% for article in person.article_set.all %}
+  <div>{{ article.title }}</div>
+{% endfor %}
+
+<hr>
+
+<h2>{{ person.username }}'s 댓글</h2>
+{% for comment in person.comment_set.all %}
+  <div>{{ comment.content }}</div>
+{% endfor %}
+
+<hr>
+
+<h2>{{ person.username }}'s likes</h2>
+{% for article in person.like_articles.all %}
+  <div>{{ article.title }}</div>
+{% endfor %}
+
+<hr>
+
+<a href="{% url 'articles:index' %}">[back]</a>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  // 팔로우 구현을 하려면
+  // 1. 팔로우 폼 선택하여, submit 시 콜백 함수 실행하도록
+  const followForm = document.querySelector('#follow-form')
+  followForm.addEventListener('submit', function (event) {
+    // 폼의 기본 기능 끄고
+    event.preventDefault()
+    // 요청 보내서 필요한 정보(팔로우 여부, 팔로워 수) 응답 받기
+      // 그러려면 프로필 주인 pk, csrf token 필요
+    const person = event.target.dataset.profile
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    axios.post(`http://127.0.0.1:8000/accounts/${person}/follow/`, {}, {
+      headers: {'X-CSRFToken': csrftoken}
+    })
+
+    /*
+    (다른 형태)
+    axios({
+     method: 'post',
+     url: `http://127.0.0.1:8000/accounts/${person}/follow/`,
+     headers: {'X-CSRFToken': csrftoken}
+    })
+    */
+
+    // 응답에서 받은 정보를 변수에 저장하기
+    .then(response => {
+      // console.log(response)
+      const following = response.data.following
+      const count = response.data.followers_count
+      // 2. 팔로우 버튼 변경하기
+      const followButton = document.querySelector('#follow-button')
+      if (following) {
+        followButton.innerText = '언팔로우'
+        followButton.className = "btn-secondary"
+        // followButton.setAttribute('class', 'btn-secondary')
+      } else {
+        followButton.innerText = '팔로우'
+        followButton.className = "btn-primary"
+        // followButton.setAttribute('class', 'btn-primary')
+      }
+      
+      // followButton.classList.toggle('btn-primary')
+
+      // 3. 팔로워 수 변경하기
+      const followCount = document.querySelector('#followers-count')
+      followCount.innerText = count
+    })
+    // 로그인하지 않았으면, 에러 코드 비교 후 로그인 화면으로
+    .catch(error => {
+      if (error.response.status === 401) {
+        window.location.href = '/accounts/login/'
+      }
+    })
+  })
+</script>
+{% endblock %}
