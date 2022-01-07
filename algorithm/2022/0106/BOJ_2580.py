@@ -50,6 +50,7 @@ def dfs(i):
             #     print(sudoku[p][q], end=' ')
             # print()
             print(*sudoku[p])
+        # return
         exit(0) # 이 부분을 왜 return으로 하면 틀릴까?
     for num in range(1, 10):
         x, y = blank[i][0], blank[i][1]
