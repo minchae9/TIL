@@ -1,17 +1,17 @@
+# 질문해둠
+
 import sys
 
 input = sys.stdin.readline
 
 n = int(input())
-to = []
 point = [a for a in range(1, n+1)]
 check = [1] * n
 ans = '+'
-for _ in range(n):
-    to.append(int(input()))
+
 p = 0
-for t in range(n):
-    goal = to[t]
+for _ in range(n):
+    goal = int(input())
     while True:
         if point[p] == goal:
             ans += '-'
