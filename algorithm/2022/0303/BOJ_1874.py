@@ -1,5 +1,3 @@
-# 질문해둠
-
 import sys
 
 input = sys.stdin.readline
@@ -10,13 +8,14 @@ check = [1] * n
 ans = '+'
 
 p = 0
+flag = False
 for _ in range(n):
     goal = int(input())
-    while True:
+    while not flag:
         if point[p] == goal:
             ans += '-'
             check[p] = 0
-            while check[p] == 0 and p >= 0:
+            while check[p] == 0 and p > 0:
                 p -= 1
             break
         elif point[p] < goal:
@@ -25,6 +24,16 @@ for _ in range(n):
             else:
                 ans += '+'
             p += 1
+        else:
+            if check[p] == 0:
+                p -= 1
+            else:
+                ans = 'NO'
+                flag = True
+                break
 
-for s in ans:
-    print(s)
+if ans == 'NO':
+    print(ans)
+else:
+    for s in ans:
+        print(s)
